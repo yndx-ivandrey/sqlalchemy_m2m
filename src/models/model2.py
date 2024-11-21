@@ -10,9 +10,8 @@ if TYPE_CHECKING:
 
 class Model2(CommonMixin, CreatedModifiedMixin, Base):
     name: Mapped[str]
-    m2m_links: Mapped[list["Model1ToModel2"]] = relationship(
-        back_populates="model2", lazy="joined"
-    )
+    # Связь только через модель Model1ToModel2
+    m2m_links: Mapped[list["Model1ToModel2"]] = relationship(back_populates="model2")
 
     def __repr__(self):
         return f"{self.id=} {self.name=}"

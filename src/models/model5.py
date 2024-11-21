@@ -12,6 +12,8 @@ if TYPE_CHECKING:
 
 class Model5(CommonMixin, CreatedModifiedMixin, Base):
     name: Mapped[str]
+    # связь с Model4 через таблицу m2m_link_table
+    # в модели сразу обращаемся к связанным записям через .sub_models
     sub_models: Mapped[list["Model4"]] = relationship(
         secondary="m2m_link_table", back_populates="sub_models", lazy="joined"
     )

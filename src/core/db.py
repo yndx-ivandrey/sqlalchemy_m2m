@@ -2,13 +2,18 @@ import re
 from datetime import datetime
 
 from sqlalchemy import func
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
+from sqlalchemy.ext.asyncio import (
+    create_async_engine,
+    AsyncSession,
+    async_sessionmaker,
+    AsyncAttrs,
+)
 from sqlalchemy.orm import DeclarativeBase, declared_attr, Mapped, mapped_column
 
 from core.settings import settings
 
 
-class Base(DeclarativeBase):
+class Base(AsyncAttrs, DeclarativeBase):
     @classmethod
     @declared_attr
     def __tablename__(cls):
